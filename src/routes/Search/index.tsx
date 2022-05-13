@@ -1,14 +1,13 @@
 import React, { useState } from 'react'
-import styles from './Movie.module.scss'
+import styles from './Search.module.scss'
 
 import MovieCard from '../../components/MovieCard'
-import { FaSearch } from 'react-icons/fa'
 
 import { useRecoilState } from 'recoil'
 import { getSearchApi } from 'services/movie'
 import { searchMovieList } from 'states/movie'
 
-const Movie = () => {
+const Search = () => {
   const [movieLists, setMovieLists] = useRecoilState(searchMovieList)
   const [searchKeyword, setSearchKeyword] = useState<string>('')
 
@@ -31,13 +30,7 @@ const Movie = () => {
 
   return (
     <div>
-      <div className={styles.searchContainer}>
-        <input className={styles.searchInput} type='text' placeholder='검색어를 입력하세요' onChange={handleChange} />
-        <button className={styles.searchButton} type='button' onClick={handleClick}>
-          <FaSearch />
-        </button>
-      </div>
-      <section>
+      <section className={styles.movieListContainer}>
         {movieLists.length > 0 ? (
           <ul>
             {movieLists.map((item) => (
@@ -52,4 +45,4 @@ const Movie = () => {
   )
 }
 
-export default Movie
+export default Search
