@@ -32,11 +32,18 @@ const Search = () => {
           .then((res) => res.data)
           .then((data) => {
             if (data.Response === 'False') {
+              if (searchKeyword === '') {
+                setIsLoading(false)
+                setPageDone(false)
+                setPageNumber(0)
+                return
+              }
               setIsLoading(false)
               setPageDone(true)
               return
             }
             setIsLoading(false)
+            setPageDone(false)
             setMovieLists((prev) => _.uniqBy(prev.concat(data.Search), 'imdbID'))
           })
       }
@@ -51,6 +58,7 @@ const Search = () => {
           setPageNumber((prev) => prev + 1)
           observer.unobserve(entry.target)
           setIsLoading(true)
+          setPageDone(false)
         }
       })
     }
