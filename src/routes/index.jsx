@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom'
 
-import styles from './Routes.module.scss'
+import './Routes.module.scss'
 
 import Layout from '../components/Layout'
 import Search from './Search'

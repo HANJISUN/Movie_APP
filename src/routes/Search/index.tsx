@@ -16,39 +16,36 @@ const Search = () => {
   const [pageNumber, setPageNumber] = useRecoilState(movieListpageNumber)
   const [lastItem, setLastItem] = useState<HTMLDivElement | null>(null)
 
-  const nextMovieLists = async () => {
-    getSearchApi({ s: searchKeyword, page: pageNumber })
-      .then((res) => res.data)
-      .then((data) => {
-        if (data.Response === 'False') {
-          return
-        }
-        setMovieLists((prev) => _.uniqBy(prev.concat(data.Search), 'imdbID'))
-      })
-  }
-
-  const onIntersect: IntersectionObserverCallback = (entries, observer) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        setPageNumber((prev) => prev + 1)
-        observer.unobserve(entry.target)
-      }
-    })
-  }
-
   useEffect(() => {
-    console.log('pageNum ? ', pageNumber)
+    const nextMovieLists = async () => {
+      getSearchApi({ s: searchKeyword, page: pageNumber })
+        .then((res) => res.data)
+        .then((data) => {
+          if (data.Response === 'False') {
+            return
+          }
+          setMovieLists((prev) => _.uniqBy(prev.concat(data.Search), 'imdbID'))
+        })
+    }
     nextMovieLists()
-  }, [pageNumber])
+  }, [pageNumber, searchKeyword, setMovieLists])
 
   useEffect(() => {
+    const onIntersect: IntersectionObserverCallback = (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setPageNumber((prev) => prev + 1)
+          observer.unobserve(entry.target)
+        }
+      })
+    }
     let observer: IntersectionObserver
     if (lastItem) {
       observer = new IntersectionObserver(onIntersect, { threshold: 0.5 })
       observer.observe(lastItem)
     }
     return () => observer && observer.disconnect()
-  }, [lastItem])
+  }, [lastItem, setPageNumber])
 
   return (
     <div>
@@ -58,7 +55,7 @@ const Search = () => {
             {movieLists.map((item, index) => {
               if (index === movieLists.length - 1) {
                 return (
-                  <div key={`last-item-box-${index}`}>
+                  <div key={`last-item-box-${item.imdbID}`}>
                     <MovieCard key={`search-movielist-${item.imdbID}`} item={item} />
                     <div ref={setLastItem} />
                   </div>
