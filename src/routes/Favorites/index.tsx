@@ -4,6 +4,7 @@ import { useRecoilState } from 'recoil'
 import { favoriteMovieList } from 'states/movie'
 
 import MovieCard from '../../components/MovieCard'
+import NotFound from 'components/NotFound'
 
 const Favorites = () => {
   const [favoriteList] = useRecoilState(favoriteMovieList)
@@ -17,7 +18,7 @@ const Favorites = () => {
           ))}
         </ul>
       ) : (
-        <span>즐겨찾기한 영화가 없습니다.</span>
+        <NotFound />
       )}
     </section>
   )

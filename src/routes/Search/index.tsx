@@ -3,7 +3,8 @@ import _ from 'lodash'
 
 import styles from './Search.module.scss'
 
-import MovieCard from '../../components/MovieCard'
+import MovieCard from 'components/MovieCard'
+import NotFound from 'components/NotFound'
 
 import { useRecoilState } from 'recoil'
 import { getSearchApi } from 'services/movie'
@@ -15,6 +16,7 @@ const Search = () => {
   const [movieLists, setMovieLists] = useRecoilState(searchMovieList)
   const [pageNumber, setPageNumber] = useRecoilState(movieListpageNumber)
   const [lastItem, setLastItem] = useState<HTMLDivElement | null>(null)
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     const nextMovieLists = async () => {
@@ -25,6 +27,7 @@ const Search = () => {
             if (data.Response === 'False') {
               return
             }
+            setIsLoading(false)
             setMovieLists((prev) => _.uniqBy(prev.concat(data.Search), 'imdbID'))
           })
       }
@@ -38,9 +41,11 @@ const Search = () => {
         if (entry.isIntersecting) {
           setPageNumber((prev) => prev + 1)
           observer.unobserve(entry.target)
+          setIsLoading(true)
         }
       })
     }
+
     let observer: IntersectionObserver
 
     if (lastItem) {
@@ -48,7 +53,9 @@ const Search = () => {
       observer.observe(lastItem)
     }
 
-    return () => observer && observer.disconnect()
+    return () => {
+      observer && observer.disconnect()
+    }
   }, [lastItem, setPageNumber])
 
   return (
@@ -69,8 +76,9 @@ const Search = () => {
             })}
           </ul>
         ) : (
-          <span>검색 결과가 없습니다.</span>
+          <NotFound />
         )}
+        {isLoading ? <p className={styles.loadingText}>Loading...🎬</p> : ''}
       </section>
     </div>
   )
