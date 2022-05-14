@@ -8,11 +8,18 @@ import NotFound from 'components/NotFound'
 
 import { useRecoilState } from 'recoil'
 import { getSearchApi } from 'services/movie'
-import { searchMovieList, movieListpageNumber, searchMovieKeyword, searchMovieResult } from 'states/movie'
+import {
+  searchMovieList,
+  movieListpageNumber,
+  searchMovieKeyword,
+  searchMovieResult,
+  movieListpageDone,
+} from 'states/movie'
 
 const Search = () => {
   const [searchKeyword] = useRecoilState(searchMovieKeyword)
   const [searchResult] = useRecoilState(searchMovieResult)
+  const [pageDone, setPageDone] = useRecoilState(movieListpageDone)
   const [movieLists, setMovieLists] = useRecoilState(searchMovieList)
   const [pageNumber, setPageNumber] = useRecoilState(movieListpageNumber)
   const [lastItem, setLastItem] = useState<HTMLDivElement | null>(null)
@@ -25,6 +32,8 @@ const Search = () => {
           .then((res) => res.data)
           .then((data) => {
             if (data.Response === 'False') {
+              setIsLoading(false)
+              setPageDone(true)
               return
             }
             setIsLoading(false)
@@ -79,6 +88,7 @@ const Search = () => {
           <NotFound />
         )}
         {isLoading ? <p className={styles.loadingText}>Loading...🎬</p> : ''}
+        {pageDone ? <p className={styles.loadingText}>No data, nothing to show... 🙊</p> : ''}
       </section>
     </div>
   )
