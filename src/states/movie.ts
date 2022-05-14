@@ -6,9 +6,14 @@ const searchMovieList = atom<ISearchItem[]>({
   default: [],
 })
 
-const pageNumber = atom<number>({
-  key: '#pageNumber',
+const MovieListpageNumber = atom<number>({
+  key: '#MovieListpageNumber',
   default: 1,
+})
+
+const searchMovieKeyword = atom<string>({
+  key: '#searchMovieKeyword',
+  default: '',
 })
 
 const favoriteMovieList = atom<ISearchItem[]>({
@@ -16,4 +21,4 @@ const favoriteMovieList = atom<ISearchItem[]>({
   default: [],
 })
 
-export { searchMovieList, pageNumber, favoriteMovieList }
+export { searchMovieList, MovieListpageNumber, searchMovieKeyword, favoriteMovieList }
