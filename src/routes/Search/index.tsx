@@ -7,12 +7,13 @@ import MovieCard from '../../components/MovieCard'
 
 import { useRecoilState } from 'recoil'
 import { getSearchApi } from 'services/movie'
-import { searchMovieList, MovieListpageNumber, searchMovieKeyword } from 'states/movie'
+import { searchMovieList, movieListpageNumber, searchMovieKeyword, searchMovieResult } from 'states/movie'
 
 const Search = () => {
   const [searchKeyword] = useRecoilState(searchMovieKeyword)
+  const [searchResult] = useRecoilState(searchMovieResult)
   const [movieLists, setMovieLists] = useRecoilState(searchMovieList)
-  const [pageNumber, setPageNumber] = useRecoilState(MovieListpageNumber)
+  const [pageNumber, setPageNumber] = useRecoilState(movieListpageNumber)
   const [lastItem, setLastItem] = useState<HTMLDivElement | null>(null)
 
   const nextMovieLists = async () => {
@@ -52,7 +53,7 @@ const Search = () => {
   return (
     <div>
       <section className={styles.movieListContainer}>
-        {movieLists.length > 0 ? (
+        {movieLists.length > 0 && searchResult === true ? (
           <ul>
             {movieLists.map((item, index) => {
               if (index === movieLists.length - 1) {

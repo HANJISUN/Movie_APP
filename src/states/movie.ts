@@ -7,14 +7,19 @@ const searchMovieList = atom<ISearchItem[]>({
   default: [],
 })
 
-const MovieListpageNumber = atom<number>({
-  key: '#MovieListpageNumber',
-  default: 1,
+const searchMovieResult = atom<boolean>({
+  key: '#searchMovieResult',
+  default: true,
 })
 
 const searchMovieKeyword = atom<string>({
   key: '#searchMovieKeyword',
   default: '',
+})
+
+const movieListpageNumber = atom<number>({
+  key: '#movieListpageNumber',
+  default: 1,
 })
 
 const localStorageEffect: <T>(key: string) => AtomEffect<T> =
@@ -36,4 +41,4 @@ const favoriteMovieList = atom<ISearchItem[]>({
   effects: [localStorageEffect<ISearchItem[]>('GripBookMark')],
 })
 
-export { searchMovieList, MovieListpageNumber, searchMovieKeyword, favoriteMovieList }
+export { searchMovieList, searchMovieResult, movieListpageNumber, searchMovieKeyword, favoriteMovieList }

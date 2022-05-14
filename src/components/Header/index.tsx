@@ -4,13 +4,14 @@ import _ from 'lodash'
 
 import { useRecoilState } from 'recoil'
 import { getSearchApi } from 'services/movie'
-import { searchMovieList, searchMovieKeyword } from 'states/movie'
+import { searchMovieList, searchMovieKeyword, searchMovieResult } from 'states/movie'
 
 import styles from './Header.module.scss'
 import { FaSearch } from 'react-icons/fa'
 
 const Header = () => {
   const [, setMovieLists] = useRecoilState(searchMovieList)
+  const [, setSearchResult] = useRecoilState(searchMovieResult)
   const [searchKeyword, setSearchKeyword] = useRecoilState(searchMovieKeyword)
   const location = useLocation()
   const currentState = location.pathname
@@ -25,9 +26,11 @@ const Header = () => {
       .then((res) => res.data)
       .then((data) => {
         if (data.Response === 'False') {
+          setSearchResult(false)
           return
         }
         setMovieLists(_.uniqBy(data.Search, 'imdbID'))
+        setSearchResult(true)
       })
   }
 
