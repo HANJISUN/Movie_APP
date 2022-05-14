@@ -38,27 +38,29 @@ const FavoriteModal = ({ setIsOpenModal, item, isAdded }: Props) => {
         </button>
         {isAdded === 'false' ? (
           <p>
-            선택한 영화를
-            <br />내 즐겨찾기 목록에 추가합니다.
+            Add a movie
+            <br />
+            to your Favorites
           </p>
         ) : (
           <p>
-            선택한 영화를
-            <br />내 즐겨찾기 목록에서 제거합니다.
+            Remove a movie
+            <br />
+            to your Favorites
           </p>
         )}
 
         <div className={styles.buttonBox}>
           <button type='button' className={styles.button} onClick={handleCloseButtonClick}>
-            취소
+            Cancel
           </button>
           {isAdded === 'false' ? (
             <button type='button' className={styles.button} onClick={handleAddButtonClick}>
-              즐겨찾기 추가
+              Add
             </button>
           ) : (
             <button type='button' className={styles.button} onClick={handleDeleteButtonClick}>
-              즐겨찾기 제거
+              Remove
             </button>
           )}
         </div>

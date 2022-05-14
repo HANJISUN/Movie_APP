@@ -9,7 +9,7 @@ import styles from './Header.module.scss'
 import { FaSearch } from 'react-icons/fa'
 
 const Header = () => {
-  const [movieLists, setMovieLists] = useRecoilState(searchMovieList)
+  const [, setMovieLists] = useRecoilState(searchMovieList)
   const [searchKeyword, setSearchKeyword] = useState<string>('')
   const location = useLocation()
   const currentState = location.pathname
@@ -34,7 +34,7 @@ const Header = () => {
   return (
     <div className={styles.headerContainer}>
       {currentState === '/favorites' ? (
-        <span>내 즐겨찾기</span>
+        <span>Favorites</span>
       ) : (
         <>
           <input className={styles.searchInput} type='text' placeholder='Search movies' onChange={handleChange} />
