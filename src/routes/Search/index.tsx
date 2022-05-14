@@ -18,14 +18,16 @@ const Search = () => {
 
   useEffect(() => {
     const nextMovieLists = async () => {
-      getSearchApi({ s: searchKeyword, page: pageNumber })
-        .then((res) => res.data)
-        .then((data) => {
-          if (data.Response === 'False') {
-            return
-          }
-          setMovieLists((prev) => _.uniqBy(prev.concat(data.Search), 'imdbID'))
-        })
+      if (pageNumber > 1) {
+        getSearchApi({ s: searchKeyword, page: pageNumber })
+          .then((res) => res.data)
+          .then((data) => {
+            if (data.Response === 'False') {
+              return
+            }
+            setMovieLists((prev) => _.uniqBy(prev.concat(data.Search), 'imdbID'))
+          })
+      }
     }
     nextMovieLists()
   }, [pageNumber, searchKeyword, setMovieLists])
@@ -40,10 +42,12 @@ const Search = () => {
       })
     }
     let observer: IntersectionObserver
+
     if (lastItem) {
-      observer = new IntersectionObserver(onIntersect, { threshold: 0.5 })
+      observer = new IntersectionObserver(onIntersect, { threshold: 0.9 })
       observer.observe(lastItem)
     }
+
     return () => observer && observer.disconnect()
   }, [lastItem, setPageNumber])
 
