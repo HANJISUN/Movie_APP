@@ -9,12 +9,12 @@ const Footer = () => {
       <ul>
         <li>
           <NavLink to='/' className={({ isActive }) => cx({ [styles.isActive]: isActive })}>
-            Search
+            검색
           </NavLink>
         </li>
         <li>
           <NavLink to='favorites' className={({ isActive }) => cx({ [styles.isActive]: isActive })}>
-            Favorites
+            내 즐겨찾기
           </NavLink>
         </li>
       </ul>

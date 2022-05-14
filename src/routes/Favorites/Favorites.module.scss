@@ -1,0 +1,9 @@
+@use '/src/styles/constants/colors';
+
+.movieListContainer {
+  padding: 10px;
+
+  h2 {
+    color: colors.$BLACK;
+  }
+}

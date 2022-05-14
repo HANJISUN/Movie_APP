@@ -1,0 +1,47 @@
+@use '/src/styles/constants/colors';
+@use '/src/styles/mixins/flexbox';
+
+.headerContainer {
+  @include flexbox.flexbox;
+  position: sticky;
+  width: 100%;
+  height: 50px;
+  border-bottom: 1px solid colors.$BLACK;
+
+  span {
+    font-size: 16px;
+    font-weight: 600;
+    color: colors.$BLACK;
+    letter-spacing: 1px;
+  }
+
+  .searchInput {
+    width: 230px;
+    height: 35px;
+    padding-left: 20px;
+    margin-right: 7px;
+    font-size: 13px;
+    font-weight: 600;
+    color: colors.$BLACK;
+    letter-spacing: 1px;
+    border: 1px solid colors.$BLACK;
+    border-radius: 20px;
+  }
+
+  .searchInput::placeholder {
+    font-style: italic;
+    color: colors.$BLACK;
+  }
+
+  .searchButton {
+    float: right;
+    width: 35px;
+    height: 35px;
+    padding-top: 3px;
+    font-size: 15px;
+    color: colors.$BACKGROUND;
+    cursor: pointer;
+    background-color: colors.$BLACK;
+    border-radius: 50px;
+  }
+}

@@ -12,17 +12,25 @@ nav {
 
   ul {
     @include flexbox.flexbox;
-    justify-content: space-between;
+    justify-content: space-evenly;
     width: 100%;
     height: 100%;
     border-top: 1px solid colors.$BLACK;
 
     li {
+      align-items: center;
+      justify-content: center;
+      vertical-align: middle;
+
       a {
-        padding: 7px 40px;
-        font-size: 0.9rem;
+        display: inline-block;
+        width: 145px;
+        height: 35px;
+        padding: 10px 0 7px;
+        font-size: 14px;
         font-weight: 700;
         color: colors.$BLACK;
+        text-align: center;
         text-decoration: none;
         letter-spacing: 0.5px;
         border: 1px solid colors.$BLACK;

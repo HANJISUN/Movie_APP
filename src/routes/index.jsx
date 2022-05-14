@@ -1,11 +1,17 @@
-import styles from './Routes.module.scss'
-import Movie from './Movie'
+import { Navigate, Route, Routes } from 'react-router-dom'
+
+import Layout from '../components/Layout'
+import Search from './Search'
+import Favorites from './Favorites'
 
 const App = () => {
   return (
-    <div className={styles.app}>
-      <Movie />
-    </div>
+    <Routes>
+      <Route path='/' element={<Layout />}>
+        <Route path='/' element={<Search />} />
+        <Route path='/favorites' element={<Favorites />} />
+      </Route>
+    </Routes>
   )
 }
 
