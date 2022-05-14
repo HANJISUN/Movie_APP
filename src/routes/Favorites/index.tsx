@@ -13,7 +13,7 @@ const Favorites = () => {
       {favoriteList.length > 0 ? (
         <ul>
           {favoriteList.map((item) => (
-            <MovieCard key={item.imdbID} item={item} />
+            <MovieCard key={`my-favorites-${item.imdbID}`} item={item} />
           ))}
         </ul>
       ) : (

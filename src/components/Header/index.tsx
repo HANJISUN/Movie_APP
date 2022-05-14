@@ -1,16 +1,17 @@
 import React, { useState } from 'react'
 import { useLocation } from 'react-router-dom'
+import _ from 'lodash'
 
 import { useRecoilState } from 'recoil'
 import { getSearchApi } from 'services/movie'
-import { searchMovieList } from 'states/movie'
+import { searchMovieList, searchMovieKeyword } from 'states/movie'
 
 import styles from './Header.module.scss'
 import { FaSearch } from 'react-icons/fa'
 
 const Header = () => {
   const [, setMovieLists] = useRecoilState(searchMovieList)
-  const [searchKeyword, setSearchKeyword] = useState<string>('')
+  const [searchKeyword, setSearchKeyword] = useRecoilState(searchMovieKeyword)
   const location = useLocation()
   const currentState = location.pathname
 
@@ -26,8 +27,7 @@ const Header = () => {
         if (data.Response === 'False') {
           return
         }
-
-        setMovieLists(data.Search)
+        setMovieLists(_.uniqBy(data.Search, 'imdbID'))
       })
   }
 
