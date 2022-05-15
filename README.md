@@ -1,46 +1,61 @@
-# Getting Started with Create React App
+# Grip Movie App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Grip Movie App은 아래 기능을 제공합니다. 
+- 영화 검색 및 즐겨찾기
+- 사이트 재 방문시 이전에 즐겨찾기 한 목록 제공
 
-## Available Scripts
+<br />  
 
-In the project directory, you can run:
+## 🌐 Build Link
 
-### `yarn start`
+https://hanjisun.github.io/wanted_pre_onboarding_grip/
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<br />  
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 🔨 Technologies Used
 
-### `yarn test`
+`React`, `TypeScript`, `Recoil`, `Scss`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<br />  
 
-### `yarn build`
+## 💡 Project List
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### 🔍 Search Page
+- 서비스 첫 진입 시 검색 탭에서 시작
+- 상단 검색창 고정, 하단에 검색 결과 화면 노출
+- 검색창에 영화 이름 입력 후 검색 버튼 클릭 시 검색 결과 노출
+  - 검색 결과 있는 경우, 검색 결과 목록 제공
+  - 검색 결과 없는 경우, 검색 결과 없음 표시
+- 검색 결과 목록 최하단에 도달할 경우 결과 노출
+  - 검색 결과 있는 경우, 다음 페이지 검색 결과 목록 제공
+  - 검색 결과 없는 경우, 더 이상 검색 데이터가 없음 표시
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### ❤️ Favorite Page
+- 영화 클릭 시 즐겨찾기 추가/제거 모달창 활성화
+- 즐겨찾기 추가할 경우 목록에 추가
+- 즐겨찾기 해제할 경우 목록에서 제거 
+- 별도의 페이징 없이 한 번에 모든 데이터 로딩
+- 재 접속 시 이전에 즐겨찾기 한 목록 제공
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<br />  
 
-### `yarn eject`
+## 💻 Run Terminal
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+아래 순서대로 터미널에 입력해주세요.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+$ git clone https://github.com/HANJISUN/wanted_pre_onboarding_grip.git
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```
+$ cd wanted_pre_onboarding_grip
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```
+$ yarn
+```
 
-## Learn More
+```
+$ yarn start
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
