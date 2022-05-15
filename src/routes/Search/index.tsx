@@ -35,7 +35,7 @@ const Search = () => {
               if (searchKeyword === '') {
                 setIsLoading(false)
                 setPageDone(false)
-                setPageNumber(0)
+                setPageNumber(1)
                 return
               }
               setIsLoading(false)
