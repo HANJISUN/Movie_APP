@@ -49,7 +49,7 @@ const Search = () => {
       }
     }
     nextMovieLists()
-  }, [pageNumber, searchKeyword, setMovieLists])
+  }, [pageNumber, searchKeyword, setMovieLists, setPageDone, setPageNumber])
 
   useEffect(() => {
     const onIntersect: IntersectionObserverCallback = (entries, observer) => {
@@ -73,7 +73,7 @@ const Search = () => {
     return () => {
       observer && observer.disconnect()
     }
-  }, [lastItem, setPageNumber])
+  }, [lastItem, setPageNumber, setPageDone])
 
   return (
     <div>
