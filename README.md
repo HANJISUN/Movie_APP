@@ -8,7 +8,7 @@ Movie App은 아래 기능을 제공합니다.
 
 ## 🌐 Build Link
 
-https://hanjisun.github.io/wanted_pre_onboarding_grip/
+[https://movie.app](https://hanjisun.github.io/wanted_pre_onboarding_grip/)
 
 <br />  
 
