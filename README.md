@@ -1,6 +1,6 @@
-# 🎬 Grip Movie App
+# 🎬 Movie_App
 
-Grip Movie App은 아래 기능을 제공합니다. 
+Movie App은 아래 기능을 제공합니다. 
 - 영화 검색 및 즐겨찾기
 - 사이트 재 방문시 이전에 즐겨찾기 한 목록 제공
 
